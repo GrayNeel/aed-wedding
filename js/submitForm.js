@@ -23,9 +23,7 @@ export const submitForm = (() => {
             .token(session.get('token'))
             .body({
                 id: id,
-                name: name.value,
-                presence: presence ? presence.value === "1" : true,
-                comment: form.value
+                name: name.value
             })
             .then();
 

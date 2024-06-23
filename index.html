@@ -481,9 +481,14 @@
                     </p>
                     <div class="mb-1" id="balasan"></div>
                     
+                    <div id="information" class="alert alert-info alert-dismissible fade show" role="alert">
+                        <p style="font-size: 1.5rem;">Attenzione!</p>
+                        <p class="m-0">Hai inserito un codice invito non valido.</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="util.close()"></button>
+                    </div>
                     <div class="mb-3">
-                        <label for="form-name" class="form-label"><b>Codice invito</b></label>
-                        <input type="text" class="form-control shadow-sm" id="form-name" placeholder="123456">
+                        <label for="form-invite-code" class="form-label"><b>Codice invito</b></label>
+                        <input type="text" class="form-control shadow-sm" id="form-invite-code" placeholder="123456">
                     </div>
 
                     <!-- <div class="mb-3">
@@ -511,7 +516,7 @@
                     </div> -->
 
                     <div class="d-grid">
-                        <button class="btn btn-primary btn-sm rounded-3 shadow m-1" onclick="comment.send(this)">
+                        <button class="btn btn-primary btn-sm rounded-3 shadow m-1" onclick="submitForm.send(this)">
                             <i class="fa-solid fa-paper-plane me-1"></i>Vai alla conferma
                         </button>
                     </div>

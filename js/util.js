@@ -246,6 +246,10 @@ export const util = (() => {
         storage('information').set('info', true);
     };
 
+    const showErrorMessage = () => {
+        storage('information').set('info', false);
+    };
+
     return {
         open,
         copy,
@@ -258,5 +262,6 @@ export const util = (() => {
         escapeHtml,
         countDownDate,
         disableButton,
+        showErrorMessage
     }
 })();

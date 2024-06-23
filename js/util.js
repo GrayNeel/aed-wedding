@@ -99,7 +99,7 @@ export const util = (() => {
         }, 1000);
     };
 
-    const copy = async (button, message, timeout = 1500) => {
+    const copy = async (button, message, timeout = 3000) => {
         try {
             await navigator.clipboard.writeText(button.getAttribute('data-copy'));
         } catch {

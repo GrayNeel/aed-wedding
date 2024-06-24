@@ -193,8 +193,8 @@ function createFormElement_old(guest, index) {
                 <select class="form-select" id="help-${index}">
                     <option value="Autonomous">Sono autonomo</option>
                     <option value="Bus-Only">Bus</option>
-                    <option value="Bus-And-Hotel">Hotel</option>
-                    <option value="Hotel-Only">Bus e Hotel</option>
+                    <option value="Hotel-Only">Hotel</option>
+                    <option value="Bus-And-Hotel">Bus e Hotel</option>
                 </select>
             </div>
         </div>

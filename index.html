@@ -476,19 +476,34 @@
                             </div>
                         </div>
                     </div>
-                    <p style="font-size: 0.9rem;">
+                    <p style="font-size: 0.9rem;" id="insert-code-text">
                         Inserisci il codice ricevuto con l'invito per confermare la tua presenza e quella dei tuoi cari.
                     </p>
-                    <div class="mb-1" id="balasan"></div>
                     
-                    <div id="information" class="alert alert-info alert-dismissible fade show" role="alert">
+                    <div id="informationBox" class="alert alert-info alert-dismissible fade show" role="alert" style="display: none;">
                         <p style="font-size: 1.5rem;">Attenzione!</p>
                         <p class="m-0">Hai inserito un codice invito non valido.</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="util.close()"></button>
+                        <button type="button" class="btn-close" aria-label="Close" onclick="util.close()"></button>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" id="input-code-form">
                         <label for="form-invite-code" class="form-label"><b>Codice invito</b></label>
                         <input type="text" class="form-control shadow-sm" id="form-invite-code" placeholder="123456">
+                    </div>
+
+                    <div class="mb-1 text-center" id="dataDisplay" style="display: none; visibility: hidden;">
+                        <h1 class="font-esthetic" data-aos="fade-up" data-aos-duration="2000" style="font-size: 3rem; color: #ce2c2c;" id="invitationName"></h1>
+                        
+                        <p style="font-size: 0.9rem;" id="infoMessage">
+                            Specifica di seguito, per ogni tuo caro, se sarà presente o meno. Potrai specificare anche eventuali allergie o intolleranze alimentari.
+                            Facci anche sapere se avrai bisogno di un servizio di trasporto per raggiungere la location, oppure di aiuto con la sistemazione.
+                        </p>
+
+                        <div class="mb-1 text-center justify-content-between" id="guestFormsContainer"></div>
+                        <button type="submit" class="btn btn-primary" id="sendConfirmation" onclick="submitForm.sendAllForms()">Invia</button>
+
+                    </div>
+                    <div class="mb-1 text-center">
+                        <h1 class="font-esthetic" style="font-size: 3rem; color: #ce2c2c;" id="thanksMessage"></h1>
                     </div>
 
                     <!-- <div class="mb-3">
@@ -515,8 +530,8 @@
                         <textarea class="form-control shadow-sm" id="form-comment" rows="4" placeholder="Tulis Ucapan dan Doa"></textarea>
                     </div> -->
 
-                    <div class="d-grid">
-                        <button class="btn btn-primary btn-sm rounded-3 shadow m-1" onclick="submitForm.send(this)">
+                    <div class="d-grid" id="submit-form-button">
+                        <button id="submitForm" class="btn btn-primary btn-sm rounded-3 shadow m-1" onclick="submitForm.send(this)">
                             <i class="fa-solid fa-paper-plane me-1"></i>Vai alla conferma
                         </button>
                     </div>

@@ -209,9 +209,6 @@ export const util = (() => {
         });
 
         document.querySelector('body').style.overflowY = 'scroll';
-        if (storage('information').get('info')) {
-            document.getElementById('information').remove();
-        }
 
         const token = document.querySelector('body').getAttribute('data-key');
         if (!token || token.length === 0) {
@@ -243,11 +240,10 @@ export const util = (() => {
     };
 
     const close = () => {
-        storage('information').set('info', true);
-    };
-
-    const showErrorMessage = () => {
-        storage('information').set('info', false);
+        const errorBox = document.getElementById('informationBox');
+        if (errorBox) {
+            errorBox.style.display = 'none';
+        }
     };
 
     return {
@@ -261,7 +257,6 @@ export const util = (() => {
         animation,
         escapeHtml,
         countDownDate,
-        disableButton,
-        showErrorMessage
+        disableButton
     }
 })();

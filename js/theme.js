@@ -118,23 +118,30 @@ export const theme = (() => {
                 // theme.set('active', THEME_DARK);
             }
         }
-
-        if (isDarkMode()) {
-            onDark();
-            document.documentElement.setAttribute(THEME_BS_DATA, THEME_DARK);
-            const toggle = document.getElementById('darkMode');
-            if (toggle) {
-                toggle.checked = true;
-            }
-        } else {
-            onLight();
-            document.documentElement.setAttribute(THEME_BS_DATA, THEME_LIGHT);
-            theme.set('active', THEME_LIGHT);
-            const toggle = document.getElementById('darkMode');
-            if (toggle) {
-                toggle.checked = false;
-            }
+        theme.set('active', THEME_LIGHT);
+        onLight();
+        document.documentElement.setAttribute(THEME_BS_DATA, THEME_LIGHT);
+        theme.set('active', THEME_LIGHT);
+        const toggle = document.getElementById('darkMode');
+        if (toggle) {
+            toggle.checked = false;
         }
+        // if (isDarkMode()) {
+        //     onDark();
+        //     document.documentElement.setAttribute(THEME_BS_DATA, THEME_DARK);
+        //     const toggle = document.getElementById('darkMode');
+        //     if (toggle) {
+        //         toggle.checked = true;
+        //     }
+        // } else {
+        //     onLight();
+        //     document.documentElement.setAttribute(THEME_BS_DATA, THEME_LIGHT);
+        //     theme.set('active', THEME_LIGHT);
+        //     const toggle = document.getElementById('darkMode');
+        //     if (toggle) {
+        //         toggle.checked = false;
+        //     }
+        // }
     };
 
     const showButtonChangeTheme = () => {

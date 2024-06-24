@@ -229,7 +229,7 @@ export const util = (() => {
         audio.showButton();
 
         theme.check();
-        theme.showButtonChangeTheme();
+        //theme.showButtonChangeTheme();
 
         if (!token || token.length === 0) {
             return;

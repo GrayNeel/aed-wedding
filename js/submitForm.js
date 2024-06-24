@@ -80,14 +80,18 @@ export const submitForm = (() => {
                     const form = createFormElement(guest, guest.guestId);
                     appendFormToContainer(form);
                 });
-                // const statusElement = document.getElementById('invitationStatus');
-                // statusElement.textContent = status;
 
-                // const commentElement = document.getElementById('invitationComment');
-                // commentElement.textContent = comment;
+                // If guests accepted, show the additional options
+                guests.forEach((guest) => {
+                    if (guest.status === 'Accepted') {
+                        const index = guest.guestId;
+                        const additionalOptions = document.getElementById(`additionalOptions-${index}`);
+                        additionalOptions.style.display = 'block';
+                    }
+                });
 
-                // const guestsElement = document.getElementById('invitationGuests');
-                // guestsElement.textContent = guests;
+                const commentElement = document.getElementById('comments');
+                commentElement.textContent = comment;
             } else {
                 // Handle null response (e.g., error case)
                 console.log('No data returned');
@@ -116,6 +120,7 @@ export const submitForm = (() => {
 
     const sendAllForms = function () {
         const guestForms = document.querySelectorAll('form[id^="guestForm-"]');
+        const comment = document.getElementById('comments').value;
         const guestsData = Array.from(guestForms).map((form, index) => {
             // Remove the guestForm- prefix from index
             index = parseInt(form.id.split('-')[1]);
@@ -140,13 +145,7 @@ export const submitForm = (() => {
 
         return res; 
     });
-
-        // Prepare the data for the API call
-        //const comment = document.getElementById('comment').value;
-
-
-
-        sendDataToAPI("", guestsData);
+        sendDataToAPI(comment, guestsData);
     };
 
     return {
@@ -157,7 +156,7 @@ export const submitForm = (() => {
     };
 })();
 
-function createFormElement(guest, index) {
+function createFormElement_old(guest, index) {
     // Create a form for each guest
     const form = document.createElement('form');
     form.id = `guestForm-${index}`;
@@ -200,6 +199,129 @@ function createFormElement(guest, index) {
             </div>
         </div>
     `;
+    return form;
+}
+
+function createFormElement(guest, index) {
+    const form = document.createElement('form');
+    form.id = `guestForm-${index}`;
+
+    const h2 = document.createElement('h2');
+    h2.className = "font-esthetic";
+    h2.style.fontSize = "2rem";
+    h2.id = "invitationName";
+    h2.textContent = guest.fullName;
+    form.appendChild(h2);
+
+    const div1 = document.createElement('div');
+    div1.className = "mb-3";
+    const label1 = document.createElement('label');
+    label1.setAttribute("for", `attend-${index}`);
+    label1.className = "form-label";
+    label1.textContent = "Presente";
+    div1.appendChild(label1);
+
+    const select1 = document.createElement('select');
+    select1.className = "form-select";
+    select1.id = `attend-${index}`;
+    select1.onchange = () => submitForm.toggleAttendanceOptions(index);
+    ["Pending:Seleziona..", "Accepted:Sì", "Declined:No"].forEach(option => {
+        const [value, text] = option.split(':');
+        const opt = document.createElement('option');
+        opt.value = value;
+        opt.textContent = text;
+        select1.appendChild(opt);
+    });
+    // Set the value of select1 based on guest.status
+    select1.value = guest.status;
+
+    div1.appendChild(select1);
+    form.appendChild(div1);
+
+    const div2 = document.createElement('div');
+    div2.id = `additionalOptions-${index}`;
+    div2.style.display = "none";
+
+    const div2_1 = document.createElement('div');
+    div2_1.className = "mb-3";
+    const label2 = document.createElement('label');
+    label2.setAttribute("for", `menuType-${index}`);
+    label2.className = "form-label";
+    label2.textContent = "Menù desiderato";
+    div2_1.appendChild(label2);
+
+    const select2 = document.createElement('select');
+    select2.className = "form-select";
+    select2.id = `menuType-${index}`;
+    ["Standard", "Vegetarian:Vegetariano", "Vegan:Vegano", "Gluten-Free:Senza glutine", "Lactose-Free:Senza lattosio"].forEach(option => {
+        const [value, text] = option.includes(':') ? option.split(':') : [option, option];
+        const opt = document.createElement('option');
+        opt.value = value;
+        opt.textContent = text;
+        select2.appendChild(opt);
+    });
+    // Set the value of select2 based on guest.menuType
+    select2.value = guest.menuType;
+    div2_1.appendChild(select2);
+    div2.appendChild(div2_1);
+
+    const div2_2 = document.createElement('div');
+    div2_2.className = "mb-3";
+    const label3 = document.createElement('label');
+    label3.setAttribute("for", `kid-${index}`);
+    label3.className = "form-label";
+    label3.textContent = "Menù bimbo";
+    div2_2.appendChild(label3);
+
+    const select3 = document.createElement('select');
+    select3.className = "form-select";
+    select3.id = `kid-${index}`;
+    ["false:No", "true:Sì"].forEach(option => {
+        const [value, text] = option.split(':');
+        const opt = document.createElement('option');
+        opt.value = value;
+        opt.textContent = text;
+        select3.appendChild(opt);
+    });
+    // Set the value of select3 based on guest.menuKids
+    // If guest.menuKids is 0, then set false, otherwise set true
+    let menuKids = "false";
+    if(guest.menuKids === 1) {
+        menuKids = "true";
+    }
+    select3.value = menuKids;
+    div2_2.appendChild(select3);
+    div2.appendChild(div2_2);
+
+    const div2_3 = document.createElement('div');
+    div2_3.className = "mb-3";
+    const label4 = document.createElement('label');
+    label4.setAttribute("for", `help-${index}`);
+    label4.className = "form-label";
+    label4.textContent = "Necessiti assistenza con il trasporto o pernottamento?";
+    div2_3.appendChild(label4);
+
+    const select4 = document.createElement('select');
+    select4.className = "form-select";
+    select4.id = `help-${index}`;
+    ["Autonomous:Sono autonomo", "Bus-Only:Bus", "Bus-And-Hotel:Hotel", "Hotel-Only:Bus e Hotel"].forEach(option => {
+        const [value, text] = option.split(':');
+        const opt = document.createElement('option');
+        opt.value = value;
+        opt.textContent = text;
+        select4.appendChild(opt);
+    });
+    // Set the value of select4 based on guest.needs
+    select4.value = guest.needs;
+    div2_3.appendChild(select4);
+    div2.appendChild(div2_3); 
+
+    form.appendChild(div2);
+
+    // Finally, add an hr
+    const hr = document.createElement('hr');
+    form.appendChild(hr);
+
     return form;
 }
 

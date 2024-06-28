@@ -304,7 +304,7 @@ function createFormElement(guest, index) {
     const select4 = document.createElement('select');
     select4.className = "form-select";
     select4.id = `help-${index}`;
-    ["Autonomous:Sono autonomo", "Bus-Only:Bus", "Bus-And-Hotel:Hotel", "Hotel-Only:Bus e Hotel"].forEach(option => {
+    ["Autonomous:Sono autonomo", "Bus-Only:Bus", "Hotel-Only:Hotel", "Bus-And-Hotel:Bus e Hotel"].forEach(option => {
         const [value, text] = option.split(':');
         const opt = document.createElement('option');
         opt.value = value;
@@ -315,6 +315,57 @@ function createFormElement(guest, index) {
     select4.value = guest.needs;
     div2_3.appendChild(select4);
     div2.appendChild(div2_3); 
+
+    select4.addEventListener('change', function() {
+        const div2_4 = document.createElement('div');
+        div2_4.className = "mt-3";
+        const label5 = document.createElement('label');
+        label5.setAttribute("for", `days-${index}`);
+        label5.className = "form-label mt-3";
+        label5.textContent = "Per quali notti ti serve l'albergo?";
+        div2_4.appendChild(label5);
+    
+        const checkbox = document.createElement('checkbox');
+        checkbox.className = "form-checkbox";
+        checkbox.id = `days-${index}`;
+
+        var selectedOption = this.value;
+        var checkboxesContainer = checkbox;
+        
+        // Clear previous checkboxes
+        //checkboxesContainer.innerHTML = '';
+        
+        if (selectedOption === 'Bus-And-Hotel') {
+        // Create and append "Notte 21" checkbox
+        var checkbox1 = document.createElement('input');
+        checkbox1.type = 'checkbox';
+        checkbox1.id = 'notte21-${index}';
+        checkbox1.name = 'notte21';
+        checkbox1.className = 'mx-2';
+        var label1 = document.createElement('label');
+        label1.htmlFor = 'notte21';
+        label1.appendChild(document.createTextNode('Notte 21'));
+        
+        checkboxesContainer.appendChild(checkbox1);
+        checkboxesContainer.appendChild(label1);
+        
+        // Create and append "Notte 22" checkbox
+        var checkbox2 = document.createElement('input');
+        checkbox2.type = 'checkbox';
+        checkbox2.id = 'notte22-${index}';
+        checkbox2.name = 'notte22';
+        checkbox2.className = 'mx-2';
+        var label2 = document.createElement('label');
+        label2.htmlFor = 'notte22';
+        label2.appendChild(document.createTextNode('Notte 22'));
+        
+        checkboxesContainer.appendChild(checkbox2);
+        checkboxesContainer.appendChild(label2);
+
+        div2_4.appendChild(checkbox);
+        div2.appendChild(div2_4);
+        }
+    });
 
     form.appendChild(div2);
 

@@ -163,7 +163,7 @@ export const submitForm = (() => {
             status: document.getElementById(`attend-${index}`).value
         };
         
-        console.log("Generated JSON is: " + JSON.stringify(res));
+        //console.log("Generated JSON is: " + JSON.stringify(res));
 
         return res; 
     });
@@ -358,7 +358,7 @@ function createFormElement(guest, index) {
         // Clear previous checkboxes
         //checkboxesContainer.innerHTML = '';
         
-        if (selectedOption === 'Bus-And-Hotel') {
+        if (selectedOption === 'Bus-And-Hotel' || selectedOption === 'Hotel-Only') {
         // Create and append "Notte 21" checkbox
         var checkbox1 = document.createElement('input');
         checkbox1.type = 'checkbox';
@@ -409,13 +409,15 @@ function createFormElement(guest, index) {
     }
 
     select4.addEventListener('change', function() {
-        if(select4.value == 'Bus-And-Hotel') 
-            showCheckbox();
-        else
+        if(select4.value === 'Bus-And-Hotel' || select4.value === 'Hotel-Only') {
+            if(document.getElementById(`checkbox-${index}`) == null)
+                showCheckbox();
+        } else {
             hideCheckbox();
+        }
     });
 
-    if(select4.value === 'Bus-And-Hotel')
+    if(select4.value === 'Bus-And-Hotel' || select4.value === 'Hotel-Only')
         showCheckbox();
 
     form.appendChild(div2);

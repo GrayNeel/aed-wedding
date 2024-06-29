@@ -133,15 +133,37 @@ export const submitForm = (() => {
                 menuKids = false;
             }
         
+        const checkboxHotel21 = document.getElementById(`notte21-${index}`)
+        const checkboxHotel22 = document.getElementById(`notte22-${index}`)
+        
+        let needed21 = false;
+        let needed22 = false;
+
+        if(checkboxHotel21 && checkboxHotel22) {
+            needed21 = checkboxHotel21.checked;
+            needed22 = checkboxHotel22.checked;
+        }
+
+        let nightsNeeded = 'None';
+
+        if(needed21 && needed22) {
+            nightsNeeded = 'Both'
+        }else if (needed21 && !needed22) {
+            nightsNeeded = '21-Only'
+        } else if (!needed21 && needed22) {
+            nightsNeeded = '22-Only'
+        } 
+        
         let res = {
             guestId: index,
             menuType: document.getElementById(`menuType-${index}`).value,
             menuKids: menuKids,
             needs: document.getElementById(`help-${index}`).value,
+            nightsNeeded: nightsNeeded,
             status: document.getElementById(`attend-${index}`).value
         };
         
-        //console.log("Generated JSON is: " + JSON.stringify(res));
+        console.log("Generated JSON is: " + JSON.stringify(res));
 
         return res; 
     });
@@ -316,9 +338,10 @@ function createFormElement(guest, index) {
     div2_3.appendChild(select4);
     div2.appendChild(div2_3); 
 
-    select4.addEventListener('change', function() {
+    const showCheckbox = () => {
         const div2_4 = document.createElement('div');
         div2_4.className = "mt-3";
+        div2_4.id = `checkbox-${index}`;
         const label5 = document.createElement('label');
         label5.setAttribute("for", `days-${index}`);
         label5.className = "form-label mt-3";
@@ -329,7 +352,7 @@ function createFormElement(guest, index) {
         checkbox.className = "form-checkbox";
         checkbox.id = `days-${index}`;
 
-        var selectedOption = this.value;
+        var selectedOption = select4.value;
         var checkboxesContainer = checkbox;
         
         // Clear previous checkboxes
@@ -339,33 +362,61 @@ function createFormElement(guest, index) {
         // Create and append "Notte 21" checkbox
         var checkbox1 = document.createElement('input');
         checkbox1.type = 'checkbox';
-        checkbox1.id = 'notte21-${index}';
+        checkbox1.id = `notte21-${index}`;
         checkbox1.name = 'notte21';
         checkbox1.className = 'mx-2';
         var label1 = document.createElement('label');
-        label1.htmlFor = 'notte21';
-        label1.appendChild(document.createTextNode('Notte 21'));
-        
+        label1.htmlFor = `notte21-${index}`;
+        label1.appendChild(document.createTextNode('21 Dicembre'));
+
         checkboxesContainer.appendChild(checkbox1);
         checkboxesContainer.appendChild(label1);
         
         // Create and append "Notte 22" checkbox
         var checkbox2 = document.createElement('input');
         checkbox2.type = 'checkbox';
-        checkbox2.id = 'notte22-${index}';
+        checkbox2.id = `notte22-${index}`;
         checkbox2.name = 'notte22';
         checkbox2.className = 'mx-2';
         var label2 = document.createElement('label');
-        label2.htmlFor = 'notte22';
-        label2.appendChild(document.createTextNode('Notte 22'));
+        label2.htmlFor = `notte22-${index}`;
+        label2.appendChild(document.createTextNode('22 Dicembre'));
         
+        if(guest.nightsNeeded) {
+            if(guest.nightsNeeded == 'Both') {
+                checkbox1.checked = true;
+                checkbox2.checked = true;
+            } else if (guest.nightsNeeded == '21-Only') {
+                checkbox1.checked = true;
+            } else if (guest.nightsNeeded == '22-Only') {
+                checkbox2.checked = true;
+            }
+        }
+
         checkboxesContainer.appendChild(checkbox2);
         checkboxesContainer.appendChild(label2);
 
         div2_4.appendChild(checkbox);
         div2.appendChild(div2_4);
         }
+    }
+
+    const hideCheckbox = () => {
+        // Clear checkboxes created in showCheckbox
+        const checkbox = document.getElementById(`checkbox-${index}`);
+        if(checkbox)
+            checkbox.remove();
+    }
+
+    select4.addEventListener('change', function() {
+        if(select4.value == 'Bus-And-Hotel') 
+            showCheckbox();
+        else
+            hideCheckbox();
     });
+
+    if(select4.value === 'Bus-And-Hotel')
+        showCheckbox();
 
     form.appendChild(div2);
 

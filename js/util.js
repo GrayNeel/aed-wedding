@@ -1,7 +1,6 @@
 import { AOS } from './aos.js';
 import { audio } from './audio.js';
 import { theme } from './theme.js';
-import { comment } from './comment.js';
 import { storage } from './storage.js';
 import { confetti } from './confetti.js';
 import { bootstrap } from './bootstrap.js';
@@ -186,20 +185,20 @@ export const util = (() => {
         })();
     };
 
-    const storeConfig = async (token) => {
-        storage('session').set('token', token);
+    // const storeConfig = async (token) => {
+    //     storage('session').set('token', token);
 
-        const config = storage('config');
-        return await request(HTTP_GET, '/api/config')
-            .token(token)
-            .then((res) => {
-                for (let [key, value] of Object.entries(res.data)) {
-                    config.set(key, value);
-                }
+    //     const config = storage('config');
+    //     return await request(HTTP_GET, '/api/config')
+    //         .token(token)
+    //         .then((res) => {
+    //             for (let [key, value] of Object.entries(res.data)) {
+    //                 config.set(key, value);
+    //             }
 
-                return res.code;
-            });
-    };
+    //             return res.code;
+    //         });
+    // };
 
     const open = async (button) => {
         button.disabled = true;

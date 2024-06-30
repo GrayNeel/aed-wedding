@@ -210,11 +210,11 @@ export const util = (() => {
 
         document.querySelector('body').style.overflowY = 'scroll';
 
-        const token = document.querySelector('body').getAttribute('data-key');
-        if (!token || token.length === 0) {
-            document.getElementById('ucapan').remove();
-            document.querySelector('a.nav-link[href="#ucapan"]').closest('li.nav-item').remove();
-        }
+        // const token = document.querySelector('body').getAttribute('data-key');
+        // if (!token || token.length === 0) {
+        //     document.getElementById('ucapan').remove();
+        //     document.querySelector('a.nav-link[href="#ucapan"]').closest('li.nav-item').remove();
+        // }
 
         AOS.init();
 
@@ -228,15 +228,15 @@ export const util = (() => {
         theme.check();
         //theme.showButtonChangeTheme();
 
-        if (!token || token.length === 0) {
-            return;
-        }
+        // if (!token || token.length === 0) {
+        //     return;
+        // }
 
-        const status = await storeConfig(token);
-        if (status === 200) {
+        //const status = await storeConfig(token);
+        //if (status === 200) {
             animation();
-            await comment.comment();
-        }
+            //await comment.comment();
+        //}
     };
 
     const close = () => {

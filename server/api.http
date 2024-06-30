@@ -1,0 +1,54 @@
+### Add an invitation
+POST http://localhost:3001/api/invitations
+Content-Type: application/json
+
+{
+  "name": "Marco & Maria"
+}
+
+### Get all available invitations
+GET http://localhost:3001/api/invitations
+
+### Get an invitation
+GET http://localhost:3001/api/invitations/NMSM0E
+
+### Add guest to an invitation
+POST http://localhost:3001/api/invitations/NMSM0E/guests
+Content-Type: application/json
+
+{
+  "fullName": "Maria Rossi",
+  "estimatedPartecipation": true
+}
+
+### Get all guests for an invitation
+GET http://localhost:3001/api/invitations/NMSM0E/guests
+
+### Delete invitation
+DELETE http://localhost:3001/api/invitations/NMSM0E
+
+### Send confirmation
+PUT http://localhost:3001/api/invitations/544233
+Content-Type: application/json
+
+{
+  "comment": "Verremo il giorno priaama!",
+  "guests": [
+    {
+      "guestId": 1,
+      "menuType": "Standard",
+      "menuKids": 1,
+      "needs": "Autonomous",
+      "status": "Accepted",
+      "nightsNeeded": "None"
+    },
+    {
+      "guestId": 2,
+      "menuType": "Standard",
+      "menuKids": 0,
+      "needs": "Bus-And-Hotel",
+      "status": "Accepted",
+      "nightsNeeded": "21-Only"
+    }
+  ]
+}

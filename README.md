@@ -1,6 +1,6 @@
 # A&D - Weddings
 
-![Thumbnail](/assets/images/banner.png)
+![Thumbnail](client/assets/images/banner.png)
 [![pages-build-deployment](https://github.com/dewanakl/undangan/actions/workflows/pages/pages-build-deployment/badge.svg?branch=3.x)](https://github.com/dewanakl/undangan/actions/workflows/pages/pages-build-deployment)
 
 ## Demo

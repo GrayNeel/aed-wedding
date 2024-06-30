@@ -7,7 +7,7 @@
 
 <https://grayneel.github.io/aed-wedding/>
 
-### Tech stack
+### Front-End Tech stack
 
 - Bootstrap 5.3.3
 - AOS 2.3.4
@@ -17,9 +17,16 @@
 - Google Fonts
 - Vanilla JS
 
+### Back-end Tech stack
+
+- Node.js
+- Express.js
+- MySQL
+
 ### Contributing
 
 This is a fork of undangan fully customized for A&D weddings needs! Please refer to the original project for contributions.
+The server back-end is completely self-written and not related to undangan project.
 
 ### License
 

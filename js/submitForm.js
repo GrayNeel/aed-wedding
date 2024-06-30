@@ -5,7 +5,6 @@ import { storage } from './storage.js';
 export const submitForm = (() => {
 
     const owns = storage('owns');
-    const session = storage('session');
 
     // Define the request function
     const request = async (baseUrl, path) => {
@@ -30,8 +29,6 @@ export const submitForm = (() => {
     };
 
     const send = async (button) => {
-        const id = button.getAttribute('data-uuid');
-
         const inviteCode = document.getElementById('form-invite-code');
         if (inviteCode.value.length == 0) {
             alert('Per favore, inserisci un codice invito.');
@@ -65,7 +62,7 @@ export const submitForm = (() => {
                 
                 // Content
                 const name = responseData.name;
-                const status = responseData.status;
+                //const status = responseData.status;
                 const comment = responseData.comment;
                 const guests = responseData.guests;
 
@@ -178,51 +175,51 @@ export const submitForm = (() => {
     };
 })();
 
-function createFormElement_old(guest, index) {
-    // Create a form for each guest
-    const form = document.createElement('form');
-    form.id = `guestForm-${index}`;
-    form.innerHTML = `
-        <h2 class="font-esthetic" style="font-size: 2rem;" id="invitationName">${guest.fullName}</h2>
-        <div class="mb-3">
-            <label for="attend-${index}" class="form-label">Presente</label>
-            <select class="form-select" id="attend-${index}" onchange="submitForm.toggleAttendanceOptions(${index})">
-                <option value="Pending">Seleziona..</option>
-                <option value="Accepted">Sì</option>
-                <option value="Declined">No</option>
-            </select>
-        </div>
-        <div id="additionalOptions-${index}" style="display: none;">
-            <div class="mb-3">
-                <label for="menuType-${index}" class="form-label">Menù desiderato</label>
-                <select class="form-select" id="menuType-${index}">
-                    <option value="Standard">Standard</option>
-                    <option value="Vegetarian">Vegetariano</option>
-                    <option value="Vegan">Vegano</option>
-                    <option value="Gluten-Free">Senza glutine</option>
-                    <option value="Lactose-Free">Senza lattosio</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="kid-${index}" class="form-label">Menù bimbo</label>
-                <select class="form-select" id="kid-${index}">
-                    <option value="false">No</option>
-                    <option value="true">Sì</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="help-${index}" class="form-label">Necessiti assistenza con il trasporto o pernottamento?</label>
-                <select class="form-select" id="help-${index}">
-                    <option value="Autonomous">Sono autonomo</option>
-                    <option value="Bus-Only">Bus</option>
-                    <option value="Hotel-Only">Hotel</option>
-                    <option value="Bus-And-Hotel">Bus e Hotel</option>
-                </select>
-            </div>
-        </div>
-    `;
-    return form;
-}
+// function createFormElement_old(guest, index) {
+//     // Create a form for each guest
+//     const form = document.createElement('form');
+//     form.id = `guestForm-${index}`;
+//     form.innerHTML = `
+//         <h2 class="font-esthetic" style="font-size: 2rem;" id="invitationName">${guest.fullName}</h2>
+//         <div class="mb-3">
+//             <label for="attend-${index}" class="form-label">Presente</label>
+//             <select class="form-select" id="attend-${index}" onchange="submitForm.toggleAttendanceOptions(${index})">
+//                 <option value="Pending">Seleziona..</option>
+//                 <option value="Accepted">Sì</option>
+//                 <option value="Declined">No</option>
+//             </select>
+//         </div>
+//         <div id="additionalOptions-${index}" style="display: none;">
+//             <div class="mb-3">
+//                 <label for="menuType-${index}" class="form-label">Menù desiderato</label>
+//                 <select class="form-select" id="menuType-${index}">
+//                     <option value="Standard">Standard</option>
+//                     <option value="Vegetarian">Vegetariano</option>
+//                     <option value="Vegan">Vegano</option>
+//                     <option value="Gluten-Free">Senza glutine</option>
+//                     <option value="Lactose-Free">Senza lattosio</option>
+//                 </select>
+//             </div>
+//             <div class="mb-3">
+//                 <label for="kid-${index}" class="form-label">Menù bimbo</label>
+//                 <select class="form-select" id="kid-${index}">
+//                     <option value="false">No</option>
+//                     <option value="true">Sì</option>
+//                 </select>
+//             </div>
+//             <div class="mb-3">
+//                 <label for="help-${index}" class="form-label">Necessiti assistenza con il trasporto o pernottamento?</label>
+//                 <select class="form-select" id="help-${index}">
+//                     <option value="Autonomous">Sono autonomo</option>
+//                     <option value="Bus-Only">Bus</option>
+//                     <option value="Hotel-Only">Hotel</option>
+//                     <option value="Bus-And-Hotel">Bus e Hotel</option>
+//                 </select>
+//             </div>
+//         </div>
+//     `;
+//     return form;
+// }
 
 function createFormElement(guest, index) {
     const form = document.createElement('form');

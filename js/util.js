@@ -112,12 +112,12 @@ export const util = (() => {
                 document.getElementById('day2').innerText = 0;
                 document.getElementById('hour2').innerText = 0;
                 document.getElementById('minute2').innerText = 0;
-                document.getElementById('second2').innerText = 0;
+                //document.getElementById('second2').innerText = 0;
             } else {
                 document.getElementById('day2').innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
                 document.getElementById('hour2').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 document.getElementById('minute2').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById('second2').innerText = Math.floor((distance % (1000 * 60)) / 1000);
+                //document.getElementById('second2').innerText = Math.floor((distance % (1000 * 60)) / 1000);
             }
         }, 1000);
     };

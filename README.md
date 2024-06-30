@@ -5,7 +5,7 @@
 
 ## Demo
 
-<https://grayneel.github.io/aed-wedding/>
+<https://grayneel.github.io/aed-wedding/client>
 
 ### Front-End Tech stack
 

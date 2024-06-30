@@ -1,18 +1,11 @@
-# Template website undangan pernikahan sederhana
+# A&D - Weddings
 
 ![Thumbnail](/assets/images/banner.png)
-![Thumbnail2](/assets/images/banner2.png)
 [![pages-build-deployment](https://github.com/dewanakl/undangan/actions/workflows/pages/pages-build-deployment/badge.svg?branch=3.x)](https://github.com/dewanakl/undangan/actions/workflows/pages/pages-build-deployment)
-![Hits](https://dikit.my.id/0b3y8q)
 
 ## Demo
 
-<https://dewanakl.github.io/undangan/?to=Teman+teman+semua>
-
-### Deployment API
-
-- Presentation
-    [https://docs.google.com/presentation/d/1EY2YmWdZUI7ASoo0f2wvU7ec_Yt0uZanYa8YLbfNysk/edit](https://docs.google.com/presentation/d/1EY2YmWdZUI7ASoo0f2wvU7ec_Yt0uZanYa8YLbfNysk/edit)
+<https://grayneel.github.io/aed-wedding/>
 
 ### Tech stack
 
@@ -26,11 +19,7 @@
 
 ### Contributing
 
-I'm very open to those of you who want to contribute to the undangan!
-
-### Security Vulnerabilities
-
-If you find any security vulnerabilities in this undangan, please email DKL via [dewanakretarta29@gmail.com](mailto:dewanakretarta29@gmail.com).
+This is a fork of undangan fully customized for A&D weddings needs! Please refer to the original project for contributions.
 
 ### License
 

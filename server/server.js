@@ -149,11 +149,11 @@ app.get('/api/invitations/:invitationId', (req, res) => {
     } else {
       guestsDao.getAllGuestsOfInvitation(invitationId).then(guests => {
         if (Object.entries(guests).length === 0)
-          res.status(404).json({ error: "No guests found" });
+          invitation.guests = [];
         else {
           invitation.guests = guests;
-          res.json(invitation);
         }
+        res.json(invitation);
       }).catch(err => {
         res.status(500).json({ error: 'An error occurred', description: err });
       });

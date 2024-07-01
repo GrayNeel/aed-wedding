@@ -108,6 +108,7 @@ const InvitationPage = () => {
             <CFormTextarea
             id="invitationComment"
             placeholder="Questa sezione conterrà un commento degli invitati"
+            value={invitation.comment}
             readOnly
             ></CFormTextarea>
         </div>
